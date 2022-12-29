@@ -116,9 +116,7 @@ export default function PostContent(props) {
           {children}
         </SyntaxHighlighter>
       ) : (
-        <code className="text-gray-800 bg-slate-300">
-          {children}
-        </code>
+        <code className="text-gray-800 bg-slate-300">{children}</code>
       );
     },
   };

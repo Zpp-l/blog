@@ -2,6 +2,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+dev模式下，加载博客内容的页面异常的卡顿
+
+
 First, run the development server:
 
 ```bash
