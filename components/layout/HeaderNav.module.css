@@ -1,0 +1,28 @@
+.header ul {
+    list-style: none;
+    @apply flex items-baseline m-0 p-0
+}
+
+.header li {
+    margin: 0 var(--size-4);
+}
+
+.header a {
+    color: var(--color-grey-100);
+    font-size: var(--size-4);
+}
+
+.header a:hover,
+.header a:active{
+    color: var(--color-grey-200);
+}
+
+@media (min-width: 768px) {
+    .header ul {
+        gap: 0.5rem;
+    }
+
+    .header a {
+        font-size: var(--size-5);
+    }
+}
