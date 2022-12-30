@@ -15,7 +15,6 @@ export default function AllPostsPage(props) {
 
 export async function getStaticProps() {
   const allPosts = getAllPosts();
-  console.log(allPosts);
   return {
     props: {
       posts: allPosts,

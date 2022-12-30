@@ -10,7 +10,12 @@ import Heading from "./Heading";
 
 export default function PostContent(props) {
   const { post } = props;
-  const imagePath = `/images/posts/${post.slug}/${post.image}`;
+  let imagePath = undefined;
+  if (post.image.startsWith("http")) {
+    imagePath = post.image;
+  } else {
+    imagePath = `/images/posts/${post.slug}/${post.image}`;
+  }
   const customRenderers = {
     // h1(head) {
     //   const { level, children } = head;

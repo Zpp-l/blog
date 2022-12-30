@@ -1,8 +1,7 @@
 import "../styles/globals.css";
-
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
-
+import "antd/dist/reset.css";
 import { Router } from "next/router";
 // import {RecoilRoot} from "recoil";
 import Layout from "../components/layout/Layout";

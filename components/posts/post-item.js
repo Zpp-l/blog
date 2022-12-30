@@ -1,26 +1,34 @@
 import Link from "next/link";
 import Image from "next/image";
 function PostItem({ title, image, excerpt, date, slug }) {
-  const formattedDate = new Date(date).toLocaleDateString("en-US", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  let formattedDate = undefined;
+  if (date) {
+    formattedDate = new Date(date).toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  }
 
-  const imagePath = `/images/posts/${slug}/${image}`;
+  let imagePath = undefined;
+  if (image) {
+    imagePath = `/images/posts/${slug}/${image}`;
+  }
   const linkPath = `/posts/${slug}`;
 
   return (
     <li className="shadow-md bg-slate-50 text-center">
       <Link href={linkPath}>
         <div className="w-full max-h-80 overflow-hidden">
-          <Image
-            className="object-cover"
-            src={imagePath}
-            alt={title}
-            width={300}
-            height={200}
-          ></Image>
+          {imagePath && (
+            <Image
+              className="object-cover"
+              src={imagePath}
+              alt={title}
+              width={300}
+              height={200}
+            ></Image>
+          )}
         </div>
         <div className="p-4">
           <h3 className="text-lg text-gray-800 font-semibold">{title}</h3>
@@ -32,4 +40,4 @@ function PostItem({ title, image, excerpt, date, slug }) {
   );
 }
 
-export default PostItem
+export default PostItem;

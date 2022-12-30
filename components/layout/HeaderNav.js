@@ -1,6 +1,3 @@
-import { useRecoilValue } from "recoil";
-
-import { navAtom } from "../../store/nav";
 import SimpleLink from "../links/SimpleLink";
 import classes from "./HeaderNav.module.css";
 
@@ -9,6 +6,7 @@ const HeaderNav = () => {
   const navVal = [
     { name: "Home", link: "/" },
     { name: "Blog", link: "/posts" },
+    { name: "Upload", link: "/upload" },
   ];
   return (
     <nav className={classes.header}>
