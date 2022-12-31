@@ -1,6 +1,7 @@
 import Head from "next/head";
-import { getPostDataSync } from "../../lib/posts-util";
+import { getPostData,getPostsFiles } from "../../lib/posts-util";
 import PostContent from "../../components/posts/post-detail/post-content";
+
 export default function PostDetailPage(props) {
   return (
     <>
@@ -12,35 +13,33 @@ export default function PostDetailPage(props) {
     </>
   );
 }
-export async function getServerSideProps(context) {
-  const { params } = context;
-  const { slug } = params;
-  const postData = await getPostDataSync(slug);
-  return {
-    props: {
-      post: postData,
-    },
-  };
-}
-// export function getStaticProps(context) {
+// export async function getServerSideProps(context) {
 //   const { params } = context;
 //   const { slug } = params;
-
-//   const postData = getPostData(slug);
+//   const postData = await getPostData(slug);
 //   return {
 //     props: {
 //       post: postData,
 //     },
 //   };
 // }
+export async function getStaticProps(context) {
+  const { params } = context;
+  const { slug } = params;
+  const postData = await getPostData(slug);
+  return {
+    props: {
+      post: postData,
+    },
+  };
+}
 
-// export function getStaticPaths() {
-//   const postFilenames = getPostsFiles();
+export function getStaticPaths() {
+  const postFilenames = getPostsFiles();
+  const slugs = postFilenames.map((fileName) => fileName.replace(/\.md$/, ""));
 
-//   const slugs = postFilenames.map((fileName) => fileName.replace(/\.md$/, ""));
-
-//   return {
-//     paths: slugs.map((slug) => ({ params: { slug: slug } })),
-//     fallback: false,
-//   };
-// }
+  return {
+    paths: slugs.map((slug) => ({ params: { slug: slug } })),
+    fallback: false,
+  };
+}

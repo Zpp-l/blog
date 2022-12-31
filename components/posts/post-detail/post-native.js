@@ -1,8 +1,8 @@
 import classes from "./post-content.module.css";
-import { Input } from "antd";
+import Input from "antd/lib/input";
 const { TextArea } = Input;
 export default function PostNative(props) {
-  const { content,handleContentChange } = props;
+  const { content, handleContentChange } = props;
   return (
     <article
       className={
@@ -15,7 +15,9 @@ export default function PostNative(props) {
         autoSize
         showCount
         defaultValue={content}
-        onChange={(e)=>{handleContentChange(e)}}
+        onChange={(e) => {
+          handleContentChange(e);
+        }}
       />
     </article>
   );

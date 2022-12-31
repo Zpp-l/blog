@@ -11,7 +11,7 @@ export const config = {
 
 export default async function handler(req, res) {
   const { method } = req;
-  let content = undefined
+  let content = undefined;
   if (method === "POST") {
     const form = new formidable.IncomingForm();
     const data = await new Promise((resolve, reject) => {
@@ -36,12 +36,14 @@ export default async function handler(req, res) {
     readStream.pipe(writeStream);
     readStream.on("end", function () {
       fs.unlinkSync(oldPath);
-      
-       content = fs.readFileSync(newPath, { encoding: "utf-8" });
-      
+
+      content = fs.readFileSync(newPath, { encoding: "utf-8" });
+      console.log('====================================');
+      console.log(content);
+      console.log('====================================');
+      return res.status(200).json({ data: content });
     });
 
-    return res.status(200).json({ data: content });
     // const content = fs.readFileSync(newPath,{encoding:'utf-8'});
   }
 }

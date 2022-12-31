@@ -4,6 +4,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 dev模式下，加载博客内容的页面异常的卡顿
 
+### 引入外部模块后，bundle打包过大
+在getInitialProps里面进行异步导入，而不是在组件层面上导入 Moment，我们计算出要发送给组件的值
 
 First, run the development server:
 

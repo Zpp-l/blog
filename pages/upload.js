@@ -1,5 +1,8 @@
 // 此页面用于上传文件
-import { DatePicker, Upload, message, Button, Form, Input } from "antd";
+import dynamic from 'next/dynamic'
+import { Upload, message, Button, Form, Input } from "antd";
+import {DatePicker} from "antd";
+// const DatePicker = dynamic(()=> import('antd/es'))
 import PostNative from "../components/posts/post-detail/post-native";
 import { useState } from "react";
 const UploadPage = () => {
@@ -52,8 +55,7 @@ const UploadPage = () => {
       body: JSON.stringify(mdProps),
     })
       .then((resp) => resp.json())
-      .then((data) => {
-      });
+      .then((data) => {});
   }
 
   if (!isUpload) {
