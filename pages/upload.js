@@ -86,7 +86,7 @@ const UploadPage = () => {
     // ---
     return (
       <>
-        <header className=" flex justify-center items-center my-16">
+        <header className=" flex justify-center items-center my-16 mx-10">
           <Form layout="inline" form={form}>
             <Form.Item label="标题">
               <Input

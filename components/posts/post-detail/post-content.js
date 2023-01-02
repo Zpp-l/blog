@@ -25,7 +25,7 @@ export default function PostContent(props) {
   return (
     <article className={classes.content}>
       <PostHeader title={post.title} image={imagePath} />
-      <article className="prose lg:prose-xl">
+      <article className="prose lg:prose-lg">
         <MDXRemote {...post.content} />
       </article>
     </article>

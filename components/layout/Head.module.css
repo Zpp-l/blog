@@ -1,19 +1,21 @@
-.layout{
-    max-width: 1400px;
-    @apply mx-auto w-full;
+.layout {
+  max-width: 1400px;
+  @apply mx-auto w-full;
 }
 
 .logo {
-    cursor: pointer;
-    text-transform: uppercase;
-    font-size: var(--size-5);
-    font-weight: bold;
-    font-family: 'Oswald', sans-serif;
-    color: var(--color-grey-50);
+  font-size: var(--size-4);
+
+  @apply sm:text-xl md:text-2xl;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: "Oswald", sans-serif;
+  color: var(--color-grey-50);
 }
 
 @media (min-width: 768px) {
-    .logo {
-        font-size: var(--size-8);
-    }
+  .logo {
+    font-size: var(--size-8);
+  }
 }

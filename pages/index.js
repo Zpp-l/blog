@@ -8,8 +8,9 @@ import Hero from "../components/home-page/hero";
 export default function Home() {
     const isLoaded = useLoaded()
     return (
-        <main>
+        <main className='text-center'>
             <Hero/>
+         
         </main>
     )
 }
