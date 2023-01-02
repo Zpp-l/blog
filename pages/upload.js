@@ -8,7 +8,7 @@ const UploadPage = () => {
   const [isUpload, setIsUpload] = useState(false);
   const [mdProps, setMdProps] = useState({});
   const [form] = Form.useForm();
-  let [oldPath,setOldPath] = useState(undefined);
+  let [oldPath, setOldPath] = useState(undefined);
   const uploadProps = {
     accept: ".md, .pdf",
     name: "file", // 发到后台的文件参数名
@@ -23,10 +23,10 @@ const UploadPage = () => {
           ...info.file.originFileObj,
           content: info.file.response.data,
         });
-        console.log('====================================');
+        console.log("====================================");
         console.log(info.file);
-        console.log('====================================');
-        setOldPath(info.file.response.path)
+        console.log("====================================");
+        setOldPath(info.file.response.path);
         setIsUpload(true);
       } else if (status === "error") {
         message.error(`${info.file.name} file upload failed.`);
@@ -61,7 +61,7 @@ const UploadPage = () => {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        setIsUpload(false)
+        setIsUpload(false);
       });
   }
 
@@ -69,11 +69,13 @@ const UploadPage = () => {
     const { Dragger } = Upload;
     return (
       <main className="w-[100%] h-[80vh] flex justify-center items-center">
-        <Dragger className="w-[80%] h-60" {...uploadProps}>
-          <p className="text-lg">Click or Drag File</p>
-          <p className="ant-upload-hint">
-            Support for a single or bulk upload.
-          </p>
+        <Dragger className="w-[100%] h-60" {...uploadProps}>
+          <aside className="p-10">
+            <p className="text-lg">Click or Drag File</p>
+            <p className="ant-upload-hint">
+              Support for a single or bulk upload.
+            </p>
+          </aside>
         </Dragger>
       </main>
     );
