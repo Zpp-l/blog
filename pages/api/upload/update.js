@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "fs/promises";
 import matter from "gray-matter";
 import path from "path";
 import { getPostData } from "../../../lib/posts-util";
@@ -8,12 +8,18 @@ export default async function handler(req, res) {
   const { method } = req;
 
   if (method === "POST") {
-    const { filename, content, title, createTime, excerpt, image } = JSON.parse(
-      req.body
-    );
-    const postData = getPostData(filename);
-
-    const filePath = path.join(postsDirectory, `${postData.slug}.md`);
+    const {
+      filename,
+      content,
+      title,
+      createTime,
+      excerpt,
+      image,
+      path: oldPath,
+    } = JSON.parse(req.body);
+    // const postData = getPostData(filename);
+    const postSlug = filename.replace(/\.md$/, ""); // removes the file extension
+    const filePath = path.join(postsDirectory, `${postSlug}.md`);
 
     const fullContent = matter.stringify(content, {
       title,
@@ -21,19 +27,19 @@ export default async function handler(req, res) {
       createTime,
       excerpt,
     });
-    fs.writeFile(
-      filePath,
-      fullContent,
-      {
+    try {
+      await fs.writeFile(filePath, fullContent, {
         flag: "w",
-      },
-      (err) => {
-        if (err) {
-        }
-      }
-    );
+      });
+      fs.unlink(oldPath)
+      return res.status(200).json({
+        status: "ok",
+      });
+    } catch (err) {
+      return res.status(403).json({
+        status: "error",
+        message: err,
+      });
+    }
   }
-  return res.status(200).json({
-    status: "ok",
-  });
 }

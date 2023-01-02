@@ -16,7 +16,7 @@ export default function PostNative(props) {
         showCount
         defaultValue={content}
         onChange={(e) => {
-          handleContentChange(e);
+          handleContentChange(e, "content");
         }}
       />
     </article>

@@ -1,7 +1,6 @@
 // 此页面用于上传文件
-import dynamic from 'next/dynamic'
-import { Upload, message, Button, Form, Input } from "antd";
-import {DatePicker} from "antd";
+import dynamic from "next/dynamic";
+import { Upload, message, Button, Form, Input, DatePicker } from "antd";
 // const DatePicker = dynamic(()=> import('antd/es'))
 import PostNative from "../components/posts/post-detail/post-native";
 import { useState } from "react";
@@ -9,8 +8,7 @@ const UploadPage = () => {
   const [isUpload, setIsUpload] = useState(false);
   const [mdProps, setMdProps] = useState({});
   const [form] = Form.useForm();
-
-  const { Dragger } = Upload;
+  let [oldPath,setOldPath] = useState(undefined);
   const uploadProps = {
     accept: ".md, .pdf",
     name: "file", // 发到后台的文件参数名
@@ -25,6 +23,10 @@ const UploadPage = () => {
           ...info.file.originFileObj,
           content: info.file.response.data,
         });
+        console.log('====================================');
+        console.log(info.file);
+        console.log('====================================');
+        setOldPath(info.file.response.path)
         setIsUpload(true);
       } else if (status === "error") {
         message.error(`${info.file.name} file upload failed.`);
@@ -52,13 +54,19 @@ const UploadPage = () => {
   function onSubmitHandler() {
     fetch(`/api/upload/update`, {
       method: "POST",
-      body: JSON.stringify(mdProps),
+      body: JSON.stringify({
+        ...mdProps,
+        path: oldPath,
+      }),
     })
       .then((resp) => resp.json())
-      .then((data) => {});
+      .then((data) => {
+        setIsUpload(false)
+      });
   }
 
   if (!isUpload) {
+    const { Dragger } = Upload;
     return (
       <main className="w-[100%] h-[80vh] flex justify-center items-center">
         <Dragger className="w-[80%] h-60" {...uploadProps}>

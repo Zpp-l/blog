@@ -9,7 +9,7 @@ export default function Header() {
             <section className={classes.layout}>
                 <div className='mx-8 flex h-[60px] items-center justify-between leading-[60px]'>
                     <div className={classes.logo}>
-                        Peng&aposs Blog
+                        Peng&apos;s Blog
                     </div>
                     <HeaderNav/>
                 </div>
