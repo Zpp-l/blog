@@ -6,7 +6,7 @@ export default function Layout({ children }) {
     <>
       <Header />
       <aside
-        className="min-h-[75vh] "
+        className="min-h-[75vh] w-full"
       >
         {children}
       </aside>

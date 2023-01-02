@@ -1,0 +1,49 @@
+**创建新对象的方法**
+
+* 传入执行函数给cancelToken构造函数，new 一个属性cancelToken
+* 外部调用执行方法，内部通过promise来进行调用abort方法
+
+  
+
+```ts
+interface ResolvePromise {
+    (reason?: string): void
+}
+
+interface Cancel {
+    (message?: string): void
+}
+
+interface CancelExecutor {
+    (cancel: Cancel): void
+}
+
+export default class cancelToken {
+    promise: Promise<string>
+    reason?: string
+
+    constructor(executor: CancelExecutor) {
+        let resolvePromise: ResolvePromise
+        this.promise = new Promise<string>(resolve => {
+            // @ts-ignore
+            resolvePromise = resolve
+        })
+        executor(message => {
+            if (this.reason) {
+                return
+            }
+            this.reason = message
+            resolvePromise(this.reason)
+        })
+    }
+}
+```
+
+**静态方法**
+
+* ​`CancelToken.source()`​
+* ​`source.token`​传给cancelToken - promise, reason
+* ​`source.cancel()`​执行方法，暂停请求
+* 在catch中通过Axios.isCancel判断是否instanceof Cancel类
+
+‍

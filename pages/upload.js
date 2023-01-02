@@ -23,9 +23,6 @@ const UploadPage = () => {
           ...info.file.originFileObj,
           content: info.file.response.data,
         });
-        console.log("====================================");
-        console.log(info.file);
-        console.log("====================================");
         setOldPath(info.file.response.path);
         setIsUpload(true);
       } else if (status === "error") {

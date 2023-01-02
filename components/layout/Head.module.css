@@ -4,6 +4,7 @@
 }
 
 .logo {
+    cursor: pointer;
     text-transform: uppercase;
     font-size: var(--size-5);
     font-weight: bold;

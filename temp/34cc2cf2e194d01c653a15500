@@ -1,0 +1,23 @@
+> 服务器用于验证客户端身份,用户的代理身份
+
+401 身份验证失败
+
+```js
+axios.post('/more/post', {
+  a: 1
+}, {
+  auth: {
+    username: 'Yee',
+    password: '123456'
+  }
+}).then(res => {
+  console.log(res)
+})
+```
+
+```js
+headers['Authorization'] = 'Basic ' + btoa(auth.username + ":" + auth.password)
+request.setRequestHeader(name, headers[name])
+```
+
+‍
