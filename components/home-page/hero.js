@@ -9,6 +9,7 @@ function Hero() {
                     alt="An image showing Myself"
                     width={300}
                     height={300}
+                    priority
                 />
             </div>
             <h1>Hi, I&apos;m Peng</h1>

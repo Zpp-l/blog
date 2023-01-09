@@ -8,7 +8,7 @@ export default function Header() {
   const [navVal, setNavVal] = useState([
     { name: "主页", link: "/" },
     { name: "博客", link: "/posts" },
-
+    { name: "标签", link: "/type" },
     { name: "关于", link: "/readme" },
   ]);
   useEffect(() => {

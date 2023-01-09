@@ -1,15 +1,9 @@
-// // import remarkGfm from "remark-gfm";
-// /** @type {import('next').NextConfig} */
-// // const withBundleAnalyzer = require('@next/bundle-analyzer')({
-// //   enabled: process.env.ANALYZE === 'true'
-// // })
 
-// // module.exports = withBundleAnalyzer
 const dynamic = require("next/dynamic");
 const withAntdLess = require("next-plugin-antd-less");
 const withPlugins = require("next-compose-plugins");
-// // const { default: remarkGfm } = require("remark-gfm");
 const remarkGfm = dynamic(() => import("remark-gfm"));
+
 const withMDX = require("@next/mdx")({
   extension: /\.mdx?$/,
   options: {
